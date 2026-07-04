@@ -39,6 +39,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
 body{font-family:'Nunito Sans',sans-serif;color:var(--text);background:var(--weich);line-height:1.65;font-size:17px}
 h1,h2,h3,h4{font-family:'Quicksand',sans-serif;color:var(--anthrazit);line-height:1.15;font-weight:600}
 img{display:block;max-width:100%}
@@ -76,13 +77,13 @@ h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:16px}
 .blob-bild.klein::after{transform:translate(15px,10px) rotate(6deg)}
 
 /* ---------- Infoleiste (groß, unter dem Header) ---------- */
-.infoleiste{background:var(--anthrazit);color:#E6F0E4}
+.infoleiste{background:linear-gradient(135deg,var(--gruen-dunkel),var(--gruen));color:#EFFBEA}
 .infoleiste .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
 .info-item{display:flex;align-items:center;gap:14px;font-size:1.02rem;font-weight:700;color:#E6F0E4;text-decoration:none}
-.info-item .i-rund{width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;color:#B9E8A9}
+.info-item .i-rund{width:44px;height:44px;flex:none;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;color:#fff}
 .info-item .i-rund svg{width:20px;height:20px}
 .info-item strong{color:#fff}
-a.info-item:hover strong,a.info-item:hover{color:#B9E8A9}
+a.info-item:hover strong,a.info-item:hover{color:#DFF2D6}
 
 /* ---------- Seitliche Quick-Buttons ---------- */
 .seitenleiste{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
@@ -94,10 +95,26 @@ a.info-item:hover strong,a.info-item:hover{color:#B9E8A9}
 .s-item.gruen{background:var(--gruen)}
 .s-item.gruen:hover{background:var(--gruen-dunkel)}
 .s-item:hover{background:#3d4c41}
+.seitenleiste:not(.gescrollt) .s-item{background:var(--weiss);color:var(--anthrazit);box-shadow:0 10px 30px -12px rgba(0,0,0,.5)}
+.seitenleiste:not(.gescrollt) .s-item:hover{background:var(--gruen-hell)}
+.seitenleiste:not(.gescrollt) .s-item.gruen{background:var(--gruen);color:#fff}
+.seitenleiste:not(.gescrollt) .s-item.gruen:hover{background:var(--gruen-dunkel)}
 .s-item.gruen:hover{background:var(--gruen-dunkel)}
 
 /* ---------- Header ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(251,253,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid #E4EEDF}
+header{position:sticky;top:0;z-index:50;background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.gescrollt{background:rgba(251,253,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid #E4EEDF}
+header .logo-dunkel{display:none}
+header.gescrollt .logo-hell{display:none}
+header.gescrollt .logo-dunkel{display:block}
+header:not(.gescrollt) nav.menu a{color:#E6F0E4}
+header:not(.gescrollt) nav.menu a:hover{color:#B9F0A2;border-color:#B9F0A2}
+header:not(.gescrollt) .btn.dunkel{background:transparent;border:2px solid rgba(185,240,162,.55);box-shadow:none}
+header:not(.gescrollt) .btn.dunkel:hover{background:rgba(255,255,255,.1)}
+header:not(.gescrollt) .burger{color:#fff}
+header:not(.gescrollt) .mega a{color:var(--anthrazit)}
+header:not(.gescrollt) .mega a:hover{color:var(--gruen-dunkel);border-color:transparent}
+header:not(.gescrollt) .mega .alle{color:var(--gruen-dunkel)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
 /* Logo (finale Version, PNG freigestellt – langfristig durch SVG ersetzen) */
 .logo{display:flex;align-items:center;text-decoration:none}
@@ -126,21 +143,27 @@ nav.menu a:hover{color:var(--gruen-dunkel);border-color:var(--gruen)}
 
 
 /* ---------- Hero ---------- */
-.hero{padding:26px 0 60px;position:relative;overflow:hidden}
+.hero{padding:64px 0 44px;position:relative;overflow:hidden;background:var(--anthrazit);margin-top:-87px;padding-top:118px}
+.hero .kicker{background:rgba(255,255,255,.1);color:#B9F0A2}
+.hero .kicker::before{background:#B9F0A2}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
-.hero h1{font-size:clamp(2.1rem,4vw,3rem);margin:12px 0 18px}
-.hero h1 em{font-style:normal;color:var(--gruen-dunkel);position:relative;white-space:nowrap}
-.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:.34em;background:var(--gruen-mint);z-index:-1;border-radius:99px}
-.hero p.lead{font-size:1.12rem;max-width:520px;margin-bottom:26px}
+.hero h1{font-size:clamp(2.1rem,4.2vw,3.2rem);margin:12px 0 18px;color:#fff}
+.hero h1 em{font-style:normal;color:#B9F0A2;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:.34em;background:rgba(185,240,162,.16);z-index:0;border-radius:99px}
+.hero p.lead{font-size:1.12rem;max-width:520px;margin-bottom:26px;color:#D7E3D6}
+.hero p.lead strong{color:#fff}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(185,240,162,.5)}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.1);border-color:#B9F0A2}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
-.hero-badges{display:flex;gap:22px;flex-wrap:wrap;font-size:.94rem;font-weight:700;color:var(--anthrazit)}
+.hero-badges{display:flex;gap:22px;flex-wrap:wrap;font-size:.94rem;font-weight:700;color:#E6F0E4}
+.hero-badges .ic{color:#7ED663}
 .hero-badges span{display:flex;align-items:center;gap:8px}
 .hero-badges .ic{width:21px;height:21px}
-.hero-img{position:relative;max-width:480px;margin-left:auto}
-.hero-collage{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.hero-collage img{width:100%;object-fit:cover;border-radius:26px;box-shadow:0 14px 36px -18px rgba(46,58,49,.3)}
-.hero-collage img:first-child{grid-column:1/-1;aspect-ratio:16/7.5}
-.hero-collage img:nth-child(n+2){aspect-ratio:1/1}
+.hero-img{position:relative;max-width:580px;margin-left:auto}
+.hero .blob-bild{max-width:none}
+.hero .blob-bild img{aspect-ratio:4/3.1}
+.hero .blob-bild::before{border-color:#7ED663;opacity:.6}
+.hero .blob-bild::after{border-color:#7ED663;opacity:.25}
 .blob{position:absolute;background:var(--weiss);border-radius:24px;box-shadow:0 16px 40px -12px rgba(46,58,49,.22);padding:14px 20px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:.92rem;color:var(--anthrazit)}
 .blob .stern{color:#F5A623;letter-spacing:2px}
 .blob small{display:block;font-weight:600;color:var(--text);font-size:.8rem}
@@ -151,13 +174,15 @@ nav.menu a:hover{color:var(--gruen-dunkel);border-color:var(--gruen)}
 .blob .rund .ic{width:22px;height:22px;color:var(--gruen-dunkel)}
 
 /* ---------- Vorstellung (hell, rundes CI) ---------- */
-.vorstellung .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.vorstellung{position:relative}
+.vorstellung .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center;position:relative;z-index:2}
 .vorstellung .blob-bild{max-width:430px}
 .vorstellung p{margin-bottom:18px;max-width:560px}
 .vorstellung .gruss{font-family:'Caveat',cursive;color:var(--gruen-dunkel);font-size:2.1rem;line-height:1.2;margin:24px 0 28px;transform:rotate(-1.5deg)}
 
 /* ---------- Leistungen ---------- */
 .leistungen{background:var(--gruen-hell)}
+.leistungen>.wrap{z-index:2}
 .l-kopf{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:44px}
 .l-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .karte{scroll-margin-top:120px;background:var(--weiss);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 26px -14px rgba(46,58,49,.18);display:flex;flex-direction:column;transition:.25s;position:relative}
@@ -256,6 +281,8 @@ form h3{font-size:1.35rem;margin-bottom:22px;color:var(--anthrazit)}
 label{display:block;font-weight:800;font-size:.86rem;margin-bottom:7px;color:var(--anthrazit)}
 input,select,textarea{width:100%;padding:13px 16px;border:2px solid #E4EEDF;border-radius:16px;font-family:inherit;font-size:.97rem;background:var(--weich);transition:.2s;color:var(--text)}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gruen);background:#fff}
+textarea{min-height:140px;resize:vertical}
+label small{font-weight:600;color:#7d8a80}
 .radio-pillen{display:flex;gap:10px}
 .radio-pillen label{flex:1;border:2px solid #E4EEDF;border-radius:999px;padding:12px;text-align:center;cursor:pointer;font-weight:700;font-size:.93rem;margin:0;transition:.2s;background:var(--weich)}
 .radio-pillen input{display:none}
@@ -342,16 +369,20 @@ footer.seite ul{list-style:none}
   .f-unten{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   nav.menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--weiss);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid #E4EEDF}
   nav.menu.offen{display:flex}
+  header:not(.gescrollt) nav.menu a{color:var(--text)}
+  header:not(.gescrollt) nav.menu a:hover{color:var(--gruen-dunkel);border-color:var(--gruen)}
   .hat-mega{display:block}
   .hat-mega::before{display:none}
   .mega{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;padding:8px 0 0 12px;width:100%;max-width:none;grid-template-columns:1fr;gap:0}
   .mega a{padding:7px 10px;font-size:.92rem}
   .nav .btn.dunkel{display:none}
   .burger{display:block}
-  .hero{padding:44px 0 90px}
+  .hero{padding:108px 0 36px}
   section{padding:72px 0}
   .cta-banner{border-radius:44px;margin:0 12px;padding:80px 0}
   .karriere .blob-bild{max-width:380px}
+  .hero-img{margin:30px auto 0;max-width:440px}
+  .hero .blob-bild img{aspect-ratio:4/3.4}
   .seitenleiste{display:none}
 }
 @media (max-width:600px){
@@ -359,7 +390,45 @@ footer.seite ul{list-style:none}
   .team-grid{grid-template-columns:1fr 1fr}
   form{padding:26px}
   .infoleiste .wrap{justify-content:center}
+  .logo img{height:44px}
+  .nav .btn{padding:11px 18px;font-size:.88rem}
+  .hero{padding-top:96px}
+  .blob.b1{right:4px;top:-14px}
+  .blob.b2{left:4px;bottom:-10px}
 }
+
+/* Mobiles Menü (Vollbild, aufgeräumt) */
+.menu-aktionen{display:none}
+body.menu-offen{overflow:hidden}
+@media (max-width:980px){
+  .nav{padding:12px 20px}
+  .nav-btns{margin-left:auto;gap:10px}
+  .burger{width:46px;height:46px;border-radius:14px;background:var(--gruen-hell);color:var(--gruen-dunkel);display:grid;place-items:center;font-size:1.35rem;flex:none;line-height:1}
+  nav.menu{position:fixed;inset:0;background:var(--weich);padding:104px 24px 40px;gap:0;overflow-y:auto;border-bottom:none;align-items:stretch;flex-direction:column}
+  nav.menu a{font-size:1.12rem;padding:15px 4px;border-bottom:1px solid #ECF2E9;color:var(--text)}
+  .hat-mega{display:block;border-bottom:1px solid #ECF2E9;padding:0}
+  .hat-mega>a{border-bottom:none;display:flex;justify-content:space-between;align-items:center;width:100%}
+  .hat-mega>a::after{content:"+";font-size:1.4rem;color:var(--gruen-dunkel);font-weight:700;line-height:1}
+  .hat-mega.offen>a::after{content:"–"}
+  .hat-mega .mega{display:none}
+  .hat-mega.offen .mega{display:grid;position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:var(--gruen-hell);border-radius:18px;padding:12px;width:100%;max-width:none;grid-template-columns:1fr 1fr;gap:2px 8px;margin:0 0 14px}
+  .mega a{font-size:.86rem;padding:9px 8px;border-bottom:none}
+  .menu-aktionen{display:flex;flex-direction:column;gap:12px;margin-top:28px;border-bottom:none}
+  .menu-aktionen .btn{width:100%;justify-content:center;display:inline-flex}
+  .menu-aktionen a{border-bottom:none}
+  .menu-tel{display:flex;justify-content:center;align-items:center;gap:9px;font-weight:800;color:var(--anthrazit);text-decoration:none;padding:10px;font-size:1.05rem}
+  header:not(.gescrollt) .burger{background:rgba(255,255,255,.14);color:#fff}
+  body.menu-offen header{background:rgba(251,253,249,.97);border-bottom:1px solid #E4EEDF}
+  body.menu-offen header .logo-hell{display:none}
+  body.menu-offen header .logo-dunkel{display:block}
+  body.menu-offen header .burger{color:var(--gruen-dunkel);background:var(--gruen-hell)}
+  body.menu-offen header nav.menu a{color:var(--text)}
+}
+
+/* Mega-Menü: Links immer dunkel & lesbar, unabhängig vom Header-Zustand */
+header nav.menu .mega a{color:var(--anthrazit);border-bottom:none;font-weight:700}
+header nav.menu .mega a:hover{color:var(--gruen-dunkel);border-bottom:none;background:var(--gruen-hell)}
+header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
 </style>
 </head>
 <body>
@@ -367,7 +436,8 @@ footer.seite ul{list-style:none}
 <header>
   <div class="wrap nav">
     <a class="logo" href="#">
-      <img src="assets/img/logo.png" alt="Susan Heinel Physiotherapie">
+      <img class="logo-hell" src="assets/img/logo-weiss.png" alt="Susan Heinel Physiotherapie">
+      <img class="logo-dunkel" src="assets/img/logo.png" alt="Susan Heinel Physiotherapie">
     </a>
     <nav class="menu" id="menu">
       <a href="ueber-uns.html">Über uns</a>
@@ -389,12 +459,17 @@ footer.seite ul{list-style:none}
       <a href="#ohne-rezept">Ohne Rezept</a>
       <a href="#anfahrt">Anfahrt</a>
       <a href="#faq">Fragen</a>
+      <div class="menu-aktionen">
+        <a class="btn" href="#termin">Termin anfragen</a>
+        <a class="btn dunkel" href="karriere.html">Karriere</a>
+        <a class="menu-tel" href="tel:+49371231520"><span class="ic" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span> 0371 231520</a>
+      </div>
     </nav>
     <div class="nav-btns">
       <a class="btn dunkel" href="karriere.html">Karriere</a>
       <a class="btn" href="#termin">Termin anfragen</a>
     </div>
-    <button class="burger" onclick="document.getElementById('menu').classList.toggle('offen')">☰</button>
+    <button class="burger" onclick="menuToggle()">☰</button>
   </div>
 </header>
 
@@ -416,8 +491,8 @@ footer.seite ul{list-style:none}
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="ring" style="width:520px;height:520px;top:-180px;left:-160px"></div>
-  <div class="ring" style="width:380px;height:380px;top:-110px;left:-90px"></div>
+  <div class="ring hell" style="width:520px;height:520px;top:-180px;left:-160px;opacity:.12"></div>
+  <div class="ring hell" style="width:380px;height:380px;top:-110px;left:-90px;opacity:.12"></div>
   <div class="wrap">
     <div>
       <span class="kicker">Physiotherapie in Chemnitz</span>
@@ -434,10 +509,8 @@ footer.seite ul{list-style:none}
       </div>
     </div>
     <div class="hero-img">
-      <div class="hero-collage">
+      <div class="blob-bild">
         <img src="assets/img/hero-behandlung.jpg" alt="Manuelle Therapie in der Physiotherapie-Praxis Susan Heinel in Chemnitz">
-        <img src="assets/img/massage.jpg" alt="Massagebehandlung">
-        <img src="assets/img/krankengymnastik.jpg" alt="Krankengymnastik">
       </div>
       <div class="blob b1"><div><div class="stern">★★★★★</div><small>„Endlich eine Praxis, die sich Zeit nimmt."</small></div></div>
       <div class="blob b2"><div class="rund"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span></div><div>Zeitnahe Termine<small>auch bei akuten Beschwerden</small></div></div>
@@ -464,8 +537,8 @@ footer.seite ul{list-style:none}
 </div>
 
 <!-- ============ VORSTELLUNG / KURZES ÜBER UNS ============ -->
-<section class="vorstellung relativ">
-  <img class="wasserzeichen" src="assets/img/logo-mark.png" alt="" style="width:440px;right:-70px;bottom:-70px;transform:rotate(-8deg)">
+<section class="vorstellung">
+  <img class="wasserzeichen" src="assets/img/logo-mark.png" alt="" style="width:560px;right:-40px;bottom:-190px;transform:rotate(-8deg);z-index:1">
   <div class="wrap">
     <div class="blob-bild">
       <img src="assets/img/susan-heinel.jpg" alt="Susan Heinel, Inhaberin der Praxis für Physiotherapie" loading="lazy">
@@ -473,10 +546,11 @@ footer.seite ul{list-style:none}
     <div>
       <span class="kicker">Ihre Gesundheit in guten Händen</span>
       <h2>Physiotherapie in <span class="script">Chemnitz</span></h2>
-      <p>Mein Team und ich nehmen uns Zeit für Sie: Wir bestellen im <strong>30-Minuten-Takt</strong>, nur zwei Patienten pro Stunde. So bekommt jede Behandlung die Ruhe und Aufmerksamkeit, die sie braucht.</p>
+      <p>Mein Team und ich nehmen uns Zeit für Sie.</p>
+      <p>Wir bestellen im <strong>30-Minuten-Takt</strong>, nur zwei Patienten pro Stunde. So bekommt jede Behandlung die Ruhe und Aufmerksamkeit, die sie braucht.</p>
       <p>Sieben Therapeutinnen und Therapeuten mit den unterschiedlichsten Weiterbildungen behandeln Sie in hellen, komplett umgebauten Räumen. Und unsere persönlich besetzte Anmeldung kümmert sich um Termine, Rezepte und Zuzahlungen, bevor Ihre Behandlung beginnt.</p>
       <p>Wir freuen uns auf Ihren Besuch.</p>
-      <div class="gruss">Herzlichst, Susan Heinel und Team</div>
+      <div class="gruss">Herzlichst,<br>Susan Heinel und Team</div>
       <a class="btn" href="ueber-uns.html">Mehr über uns →</a>
     </div>
   </div>
@@ -484,8 +558,6 @@ footer.seite ul{list-style:none}
 
 <!-- ============ LEISTUNGEN ============ -->
 <section class="leistungen relativ" id="leistungen">
-  <div class="ring" style="width:560px;height:560px;top:-220px;right:-200px"></div>
-  <div class="ring" style="width:420px;height:420px;top:-150px;right:-130px"></div>
   <div class="ring dick" style="width:360px;height:360px;bottom:-140px;left:-140px"></div>
   <div class="wrap">
     <div class="l-kopf">
@@ -746,11 +818,17 @@ footer.seite ul{list-style:none}
           <label><input type="checkbox"> Fr</label>
         </div>
       </div>
-      <div class="zeile">
-        <div class="feld"><label for="uhrzeit">Uhrzeit</label>
-          <select id="uhrzeit"><option>Egal</option><option>Vormittags</option><option>Nachmittags</option></select>
+      <div class="feld">
+        <label>Uhrzeit</label>
+        <div class="radio-pillen">
+          <label><input type="radio" name="uhrzeit" checked> Egal</label>
+          <label><input type="radio" name="uhrzeit"> Vormittags</label>
+          <label><input type="radio" name="uhrzeit"> Nachmittags</label>
         </div>
-        <div class="feld"><label for="nachricht">Nachricht (optional)</label><input id="nachricht" type="text" placeholder="Ihre Nachricht an uns"></div>
+      </div>
+      <div class="feld">
+        <label for="nachricht">Ihre Nachricht <small>(optional)</small></label>
+        <textarea id="nachricht" placeholder="Möchten Sie uns noch etwas mitteilen? Zum Beispiel Ihre Beschwerden oder Rückfragen."></textarea>
       </div>
       <button class="btn" type="submit">Terminanfrage absenden</button>
       <p class="form-hinweis">Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu. Ihre Daten werden nur zur Terminvereinbarung verwendet.</p>
@@ -906,7 +984,7 @@ footer.seite ul{list-style:none}
     <div class="f-unten">
       <a class="credit" href="https://schmidtke-gmbh.de" target="_blank" rel="noopener"><span>Webseite von</span> <b>schmidtke<i></i></b></a>
       <div>© 2026 Praxis für Physiotherapie Susan Heinel</div>
-      <div><a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a></div>
+      <div><a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a></div>
     </div>
   </div>
 </footer>
@@ -917,13 +995,36 @@ function rezeptWechsel(hatRezept){
   document.getElementById('rezept-upload').classList.toggle('zeigen', hatRezept);
   document.getElementById('wunsch-behandlung').classList.toggle('zeigen', !hatRezept);
 }
+// Header-Switch: transparent auf dunklem Hero, hell beim Scrollen
+const kopfzeile = document.querySelector('header');
+const seitenleiste = document.querySelector('.seitenleiste');
+function headerSwitch(){
+  const unten = window.scrollY > 40;
+  kopfzeile.classList.toggle('gescrollt', unten);
+  if(seitenleiste) seitenleiste.classList.toggle('gescrollt', unten);
+}
+window.addEventListener('scroll', headerSwitch, {passive:true}); headerSwitch();
 // Menü schließen nach Klick (mobil)
-document.querySelectorAll('nav.menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('offen')));
+function menuToggle(){
+  const menu = document.getElementById('menu');
+  const burger = document.querySelector('.burger');
+  const offen = menu.classList.toggle('offen');
+  document.body.classList.toggle('menu-offen', offen);
+  burger.textContent = offen ? '✕' : '☰';
+}
+document.querySelectorAll('nav.menu a').forEach(a=>a.addEventListener('click', e=>{
+  if(a.parentElement.classList.contains('hat-mega') && window.innerWidth <= 980){
+    e.preventDefault();
+    a.parentElement.classList.toggle('offen');
+    return;
+  }
+  if(document.getElementById('menu').classList.contains('offen')) menuToggle();
+}));
 
 // Dezente Einblend-Animationen beim Laden & Scrollen
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const sel = '.hero .kicker,.hero h1,.hero .lead,.hero-ctas,.hero-badges,.hero-collage img,.vorstellung p,.vorstellung .gruss,.karte,.mini,.abk-hinweis,.stimme,.ig-card,.kopf,.benefit,details,.rezept .blob-bild,.karriere .blob-bild,.anfahrt-bilder img,section .kicker,section h2,section .sub';
+  const sel = '.hero .kicker,.hero h1,.hero .lead,.hero-ctas,.hero-badges,.hero .blob-bild,.vorstellung p,.vorstellung .gruss,.karte,.mini,.abk-hinweis,.stimme,.ig-card,.kopf,.benefit,details,.rezept .blob-bild,.karriere .blob-bild,.anfahrt-bilder img,section .kicker,section h2,section .sub';
   const els = [...new Set(document.querySelectorAll(sel))];
   const zaehler = new Map();
   els.forEach(el=>{
