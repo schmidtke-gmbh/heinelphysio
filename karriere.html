@@ -269,7 +269,7 @@ footer.seite ul{list-style:none}
 }
 @media (max-width:600px){
   .logo img{height:44px}
-  .nav .btn{padding:11px 18px;font-size:.88rem}
+  .nav .btn{padding:11px 16px;font-size:.86rem;white-space:nowrap}
   .benefit-grid,.f-grid{grid-template-columns:1fr}
   .infoleiste .wrap{justify-content:center}
 }
@@ -295,6 +295,8 @@ body.menu-offen{overflow:hidden}
   .menu-aktionen a{border-bottom:none}
   .menu-tel{display:flex;justify-content:center;align-items:center;gap:9px;font-weight:800;color:var(--anthrazit);text-decoration:none;padding:10px;font-size:1.05rem}
   body.menu-offen header{background:rgba(251,253,249,.97);border-bottom:1px solid #E4EEDF}
+  body.menu-offen nav.menu{z-index:1}
+  body.menu-offen .nav>*:not(nav.menu){position:relative;z-index:2}
   body.menu-offen header .logo-hell{display:none}
   body.menu-offen header .logo-dunkel{display:block}
   body.menu-offen header .burger{color:var(--gruen-dunkel);background:var(--gruen-hell)}
@@ -305,6 +307,10 @@ body.menu-offen{overflow:hidden}
 header nav.menu .mega a{color:var(--anthrazit);border-bottom:none;font-weight:700}
 header nav.menu .mega a:hover{color:var(--gruen-dunkel);border-bottom:none;background:var(--gruen-hell)}
 header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
+
+/* Fix: backdrop-filter macht den Header zum Bezugsrahmen des fixen Menüs.
+   Bei offenem Menü deaktivieren, damit das Vollbild-Menü den ganzen Viewport füllt. */
+body.menu-offen header,body.menu-offen header.gescrollt{backdrop-filter:none;-webkit-backdrop-filter:none}
 </style>
 </head>
 <body>
@@ -369,7 +375,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
     </div>
     <div class="bilder">
       <div class="blob-bild">
-        <img src="assets/img/trainingsraum.jpg" alt="Heller Trainingsraum der Praxis">
+        <img src="assets/img/trainingsraum.jpg" alt="Heller Sportraum der Praxis">
       </div>
       <img class="kleinbild" src="assets/img/training.jpg" alt="Therapeutin bei der Behandlung">
     </div>
@@ -419,7 +425,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
       <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/><path d="m9 14 2 2 4-4.2"/></svg></span></div><h3>Besetzte Anmeldung</h3><p>Termine, Zuzahlungen, Rezeptfragen: Unsere Anmeldung nimmt dir den Papierkram ab. Du konzentrierst dich auf die Therapie.</p></div>
       <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span></div><h3>Weiterbildungen im Team</h3><p>Wir bilden uns regelmäßig fort, oft gemeinsam als Team. Deine Entwicklung wird aktiv unterstützt.</p></div>
       <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 6.5 17.5 3.6a2 2 0 0 0-1.4-.6H7.9a2 2 0 0 0-1.4.6L3.6 6.5"/><path d="M4 6h16v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 10a3 3 0 0 0 6 0"/></svg></span></div><h3>Arbeitskleidung gestellt</h3><p>Einheitliche Kleidung in unserem Maigrün, komplett gestellt und mit Reinigungspauschale.</p></div>
-      <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 17.5h-4.5L8 9h2m3 0h3l2.5 8.5"/><path d="M12 9V6.5h2.5"/></svg></span></div><h3>Mobilität bezuschusst</h3><p>Jobrad, Deutschlandticket oder Kilometerpauschale: Dein Arbeitsweg wird unterstützt, egal wie du kommst.</p></div>
+      <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 17.5h-4.5L8 9h2m3 0h3l2.5 8.5"/><path d="M12 9V6.5h2.5"/></svg></span></div><h3>Mobilität bezuschusst</h3><p>Jobrad, Deutschlandticket oder Kilometerpauschale: Dein Arbeitsweg wird unterstützt. Mit dem Auto? Gute Parkmöglichkeiten gleich in der Nähe.</p></div>
       <div class="benefit"><div class="ico"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span></div><h3>Zuschüsse &amp; Extras</h3><p>Kindergartenzuschuss, Altersvorsorge, Weihnachts- und Urlaubsgeld: Wir holen raus, was steuerlich möglich ist.</p></div>
     </div>
   </div>
@@ -434,7 +440,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
       <div>
         <span class="kicker">Dein neuer Arbeitsplatz</span>
         <h2>Hell, modern, <span class="script">komplett umgebaut</span></h2>
-        <p class="sub">Keine engen Kabinen mit Vorhängen: Unsere Räume wurden vor zwei Jahren vollständig umgebaut. Offene, helle Behandlungsräume, ein großzügiger Trainingsbereich und moderne Geräte bis hin zur Lasertherapie.</p>
+        <p class="sub">Keine engen Kabinen mit Vorhängen: Unsere Räume wurden vor zwei Jahren vollständig umgebaut. Offene, helle Behandlungsräume, ein großzügiger Sportraum und moderne Therapiegeräte bis hin zur Lasertherapie.</p>
       </div>
       <div class="pfeile">
         <button class="pfeil" onclick="blaettern(-1)" aria-label="Zurück">←</button>
@@ -446,7 +452,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
       <img src="assets/img/krankengymnastik.jpg" alt="Krankengymnastik" loading="lazy">
       <img src="assets/img/massage.jpg" alt="Massagebehandlung" loading="lazy">
       <img src="assets/img/behandlung-kopf.jpg" alt="Heller Behandlungsraum" loading="lazy">
-      <img src="assets/img/trainingsraum.jpg" alt="Trainingsbereich">
+      <img src="assets/img/trainingsraum.jpg" alt="Sportraum">
       <img src="assets/img/eingang.jpg" alt="Eingang zum Ärztehaus" loading="lazy">
     </div>
     <div class="fortschritt"><div id="balken"></div></div>
@@ -460,7 +466,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
   <div class="wrap">
     <span class="kicker">Mitarbeiterstimmen</span>
     <h2>Das sagt unser <span class="script">Team</span></h2>
-    <p class="sub">Sieben Therapeutinnen und Therapeuten, jung und alt gemischt, gemeinsame Mittagspause inklusive. Zwei- bis dreimal im Jahr sind wir auch außerhalb der Praxis zusammen unterwegs.</p>
+    <p class="sub">Unsere Therapeutinnen und Therapeuten, jung und alt gemischt, gemeinsame Mittagspause inklusive. Zwei- bis dreimal im Jahr sind wir auch außerhalb der Praxis zusammen unterwegs.</p>
     <div class="m-grid">
       <div class="m-stimme">
         <p>„Ich kam aus einer Praxis im 20-Minuten-Takt und war ehrlich gesagt völlig durch. Hier habe ich endlich wieder Zeit für meine Patienten und für mich."</p>
@@ -554,10 +560,10 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
     <div>
       <span class="kicker">Dein Arbeitsplatz</span>
       <h2>Mitten in Chemnitz, <span class="script">gut erreichbar</span></h2>
-      <p class="sub">Unsere Praxis liegt im Ärztehaus an der Markersdorfer Straße: helle, vor zwei Jahren komplett umgebaute Räume mit großzügigem Trainingsbereich.</p>
+      <p class="sub">Unsere Praxis liegt im Ärztehaus an der Markersdorfer Straße: helle, vor zwei Jahren komplett umgebaute Räume mit großzügigem Sportraum.</p>
       <div class="info-zeilen">
         <div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span></div><div><strong>Markersdorfer Str. 124, 09122 Chemnitz</strong><br>im Ärztehaus, Stadtteil Morgenleite</div></div>
-        <div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span></div><div><strong>Kostenloser Parkplatz</strong> direkt vor dem Haus, auch für dich als Mitarbeiter/in.</div></div>
+        <div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span></div><div><strong>Parken kein Problem:</strong> direkt nebenan findest du als Mitarbeiter/in genügend kostenlose Parkmöglichkeiten.</div></div>
         <div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21l1-4M16 21l-1-4"/></svg></span></div><div><strong>Straßenbahn &amp; Bus</strong> halten unmittelbar in der Nähe, mit Deutschlandticket-Zuschuss.</div></div>
       </div>
     </div>
@@ -634,7 +640,7 @@ header nav.menu .mega a.alle{color:var(--gruen-dunkel)}
         <h4>Kontakt</h4>
         <p><span class="ic klein" style="color:#B9E8A9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></span><a href="tel:+49371231520">0371 231520</a><br>
         <span class="ic klein" style="color:#B9E8A9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 7L22 7"/></svg></span><a href="mailto:bewerbung@physiotherapie-heinel.de">bewerbung@physiotherapie-heinel.de</a></p>
-        <p style="margin-top:10px"><strong style="color:#fff">Anmeldung besetzt:</strong><br>Mo–Fr ab 8:30 Uhr</p>
+        <p style="margin-top:10px"><strong style="color:#fff">Anmeldung besetzt:</strong><br>Mo–Fr ab 9:00 Uhr</p>
       </div>
       <div>
         <h4 id="oeffnungszeiten">Öffnungszeiten</h4>

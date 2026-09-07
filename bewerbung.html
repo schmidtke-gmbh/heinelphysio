@@ -91,6 +91,13 @@ footer a{color:#B9E8A9;text-decoration:none}
   form{padding:26px}
   main{padding:44px 0 70px}
 }
+.hp{position:absolute;left:-9999px;top:-9999px}
+.einwilligung{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;font-weight:600;color:var(--text);margin:6px 0 14px;line-height:1.45}
+.einwilligung input{margin-top:4px;accent-color:var(--gruen);width:18px;height:18px;flex:none}
+.einwilligung a{color:var(--gruen-dunkel)}
+.form-fehler{background:#FDECEC;color:#A32323;border-radius:12px;padding:10px 14px;font-size:.9rem;font-weight:700;margin-bottom:12px}
+.feld input.ungueltig,.feld textarea.ungueltig,.feld select.ungueltig{border-color:#D94545}
+.datei-input{display:block;width:100%;font-size:.92rem;padding:12px;border:2px dashed var(--gruen-mint);border-radius:14px;background:var(--gruen-hell);color:var(--text)}
 </style>
 </head>
 <body>
@@ -118,53 +125,61 @@ footer a{color:#B9E8A9;text-decoration:none}
       </div>
     </div>
 
-    <!-- Formular = Demo (Versand wird später angebunden) -->
-    <form onsubmit="event.preventDefault();alert('Demo: Versand wird später angebunden.');">
+    <!-- Versand über Netlify Forms (Formularname: blitzbewerbung). Benachrichtigung in Netlify unter Forms → Notifications einrichten. -->
+    <form name="blitzbewerbung" method="POST" action="danke.html?typ=bewerbung" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="form-name" value="blitzbewerbung">
+      <p class="hp" aria-hidden="true"><label>Bitte leer lassen: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="zeile">
-        <div class="feld"><label for="vorname">Vorname *</label><input id="vorname" type="text" placeholder="Dein Vorname" required></div>
-        <div class="feld"><label for="nachname">Nachname *</label><input id="nachname" type="text" placeholder="Dein Nachname" required></div>
+        <div class="feld"><label for="vorname">Vorname *</label><input id="vorname" name="vorname" type="text" placeholder="Dein Vorname" autocomplete="given-name" required></div>
+        <div class="feld"><label for="nachname">Nachname *</label><input id="nachname" name="nachname" type="text" placeholder="Dein Nachname" autocomplete="family-name" required></div>
       </div>
       <div class="zeile">
-        <div class="feld"><label for="telefon">Telefonnummer *</label><input id="telefon" type="tel" placeholder="Für den schnellen Rückruf" required></div>
-        <div class="feld"><label for="email">E-Mail <small>(optional)</small></label><input id="email" type="email" placeholder="deine@mail.de"></div>
+        <div class="feld"><label for="telefon">Telefonnummer *</label><input id="telefon" name="telefon" type="tel" placeholder="Für den schnellen Rückruf" autocomplete="tel" required></div>
+        <div class="feld"><label for="email">E-Mail <small>(optional)</small></label><input id="email" name="email" type="email" placeholder="deine@mail.de" autocomplete="email"></div>
       </div>
       <div class="feld">
         <label>Deine Qualifikation *</label>
         <div class="pillen">
-          <label><input type="radio" name="quali" required> Physiotherapeut/in</label>
-          <label><input type="radio" name="quali"> Masseur/in &amp; med. Bademeister/in</label>
-          <label><input type="radio" name="quali"> In Ausbildung / Berufseinstieg</label>
+          <label><input type="radio" name="qualifikation" value="Physiotherapeut/in" required> Physiotherapeut/in</label>
+          <label><input type="radio" name="qualifikation" value="Masseur/in & med. Bademeister/in"> Masseur/in &amp; med. Bademeister/in</label>
+          <label><input type="radio" name="qualifikation" value="In Ausbildung / Berufseinstieg"> In Ausbildung / Berufseinstieg</label>
         </div>
       </div>
       <div class="feld">
         <label>Weiterbildungen <small>(einfach anklicken, falls vorhanden)</small></label>
         <div class="pillen">
-          <label><input type="checkbox"> Manuelle Therapie</label>
-          <label><input type="checkbox"> Manuelle Lymphdrainage</label>
-          <label><input type="checkbox"> KG-Gerät</label>
-          <label><input type="checkbox"> Weitere</label>
+          <label><input type="checkbox" name="weiterbildungen" value="Manuelle Therapie"> Manuelle Therapie</label>
+          <label><input type="checkbox" name="weiterbildungen" value="Manuelle Lymphdrainage"> Manuelle Lymphdrainage</label>
+          <label><input type="checkbox" name="weiterbildungen" value="KG-Gerät"> KG-Gerät</label>
+          <label><input type="checkbox" name="weiterbildungen" value="Weitere"> Weitere</label>
         </div>
       </div>
       <div class="zeile">
         <div class="feld">
           <label>Berufserfahrung</label>
-          <select><option>Bitte wählen</option><option>Berufseinsteiger/in</option><option>1–3 Jahre</option><option>3–10 Jahre</option><option>Über 10 Jahre</option></select>
+          <select name="berufserfahrung"><option value="">Bitte wählen</option><option>Berufseinsteiger/in</option><option>1–3 Jahre</option><option>3–10 Jahre</option><option>Über 10 Jahre</option></select>
         </div>
         <div class="feld">
           <label>Gewünschter Umfang</label>
-          <select><option>Bitte wählen</option><option>Vollzeit</option><option>Teilzeit</option><option>Noch offen</option></select>
+          <select name="umfang"><option value="">Bitte wählen</option><option>Vollzeit</option><option>Teilzeit</option><option>Noch offen</option></select>
         </div>
       </div>
       <div class="feld">
         <label for="start">Frühester Start <small>(optional)</small></label>
-        <input id="start" type="text" placeholder="z. B. ab sofort, ab September …">
+        <input id="start" name="start" type="text" placeholder="z. B. ab sofort, ab September …">
       </div>
       <div class="feld">
         <label for="nachricht">Möchtest du uns noch etwas sagen? <small>(optional)</small></label>
-        <textarea id="nachricht" placeholder="Ganz ohne Druck, ein Satz reicht völlig."></textarea>
+        <textarea id="nachricht" name="nachricht" placeholder="Ganz ohne Druck, ein Satz reicht völlig."></textarea>
       </div>
+      <div class="feld">
+        <label for="unterlagen">Lebenslauf oder Zeugnisse <small>(optional, PDF/JPG, max. 8 MB)</small></label>
+        <input id="unterlagen" name="unterlagen" type="file" accept=".pdf,image/*" class="datei-input">
+      </div>
+      <label class="einwilligung"><input type="checkbox" name="datenschutz" value="ja" required><span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Daten zur Bearbeitung der Bewerbung verwendet werden. *</span></label>
+      <p class="form-fehler" hidden>Bitte fülle alle mit * markierten Felder aus.</p>
       <button class="btn" type="submit">Blitzbewerbung absenden</button>
-      <p class="form-hinweis">Mit dem Absenden stimmst du unserer Datenschutzerklärung zu. Deine Daten werden nur zur Bearbeitung deiner Bewerbung verwendet und vertraulich behandelt.</p>
+      <p class="form-hinweis">Susan meldet sich in der Regel innerhalb von zwei Werktagen. Deine Daten werden nur zur Bearbeitung deiner Bewerbung verwendet und vertraulich behandelt.</p>
     </form>
 
     <p class="kontakt-alternativ">Lieber persönlich? Ruf Susan einfach an: <a href="tel:+49371231520"><strong>0371 231520</strong></a></p>
@@ -179,6 +194,21 @@ footer a{color:#B9E8A9;text-decoration:none}
 </footer>
 
 <script>
+// Formular-Prüfung mit freundlicher Fehlermeldung
+document.querySelectorAll('form[data-netlify]').forEach(f=>{
+  f.addEventListener('submit', e=>{
+    const fehler = f.querySelector('.form-fehler');
+    let ok = true;
+    f.querySelectorAll('[required]').forEach(el=>{
+      let leer = el.type==='radio' ? !f.querySelector('input[name="'+el.name+'"]:checked') : el.type==='checkbox' ? !el.checked : !el.value.trim();
+      el.classList.toggle('ungueltig', leer); if(leer) ok=false;
+    });
+    const datei = f.querySelector('input[type=file]');
+    if(datei && datei.files[0] && datei.files[0].size > 8*1024*1024){ ok=false; alert('Die Datei ist größer als 8 MB. Bitte eine kleinere Datei wählen.'); }
+    if(!ok){ e.preventDefault(); if(fehler){ fehler.hidden=false; fehler.scrollIntoView({behavior:'smooth',block:'center'}); } }
+    else { const b=f.querySelector('button[type=submit]'); if(b){ b.disabled=true; b.textContent='Wird gesendet …'; } }
+  });
+});
 // Dezente Einblendung
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
