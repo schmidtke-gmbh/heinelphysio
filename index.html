@@ -410,6 +410,14 @@ footer.seite ul{list-style:none}
   .seitenleiste{display:none}
 }
 @media (max-width:600px){
+  .feld input,.feld select,.feld textarea,.datei-input{font-size:16px!important;min-height:50px}
+  .feld textarea{min-height:120px}
+  .radio-pillen label,.wochentage label,.pillen label{min-height:46px;display:flex;align-items:center;justify-content:center}
+  .einwilligung{padding:6px 0}
+  form label.einwilligung input{width:22px;height:22px;margin-top:2px}
+  .btn{min-height:52px}
+  footer.seite li a,footer.seite p a,footer .f-unten a,footer a{display:inline-block;padding:5px 0}
+  footer.seite li{line-height:1.5}
   .l-grid,.stimmen-grid,.zeile,.f-grid{grid-template-columns:1fr}
   .weitere{padding:28px 20px 18px}
   .w-kopf{flex-direction:column;align-items:flex-start;gap:10px}
@@ -425,7 +433,9 @@ footer.seite ul{list-style:none}
   .wochentage label{min-width:0}
   .radio-pillen label{padding:12px 8px;font-size:.9rem}
   form{padding:26px 20px}
-  .infoleiste .wrap{justify-content:center}
+  .infoleiste .wrap{flex-direction:column;align-items:stretch;gap:10px;padding-top:14px;padding-bottom:14px}
+  .info-item{justify-content:flex-start;width:100%;max-width:340px;margin:0 auto;gap:12px;font-size:.98rem;white-space:nowrap}
+  .info-item .i-rund{width:40px;height:40px}
   .logo img{height:44px}
   .nav .btn{padding:11px 16px;font-size:.86rem;white-space:nowrap}
   .hero{padding-top:96px}
@@ -477,7 +487,7 @@ body.menu-offen header,body.menu-offen header.gescrollt{backdrop-filter:none;-we
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#">
+    <a class="logo" href="index.html">
       <img class="logo-hell" src="assets/img/logo-weiss.png" alt="Susan Heinel Physiotherapie">
       <img class="logo-dunkel" src="assets/img/logo.png" alt="Susan Heinel Physiotherapie">
     </a>
@@ -640,7 +650,7 @@ body.menu-offen header,body.menu-offen header.gescrollt{backdrop-filter:none;-we
         <img src="assets/img/lymphdrainage.jpg" alt="Manuelle Lymphdrainage am Bein" loading="lazy" style="object-position:center 70%">
         <div class="inhalt">
           <h3>Lymphdrainage</h3>
-          <p>Sanfte Grifftechniken zur Entstauung des Gewebes, zum Beispiel nach Operationen, bei Schwellungen oder Lipödem.</p>
+          <p>Sanfte Grifftechniken zur Entstauung des Gewebes, zum Beispiel nach Operationen, bei Schwellungen sowie bei Lipödem und Lymphödem.</p>
           <span class="kuerzel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 11v5.2"/><circle cx="12" cy="7.6" r="0.7" fill="currentColor" stroke="none"/></svg></span><span>Auf dem Rezept: <b>MLD</b> · 30 / 45 / 60 Min.</span></span>
         </div>
       </div>
@@ -1067,7 +1077,7 @@ body.menu-offen header,body.menu-offen header.gescrollt{backdrop-filter:none;-we
           <li><a href="#leistungen">Leistungen</a></li>
           <li><a href="#termin">Termin anfragen</a></li>
           <li><a href="karriere.html">Karriere</a></li>
-          <li><a href="#">Instagram</a> · <a href="#">Facebook</a></li>
+          <!-- Instagram/Facebook-Links einfügen, sobald die Profile existieren -->
         </ul>
       </div>
     </div>
