@@ -27,7 +27,7 @@ an **info@physiotherapie-heinel.de** (Wunsch Susan: zentrale Adresse, auf die au
 ## Vor Livegang (TODO)
 1. **Domain:** Überall `https://www.physiotherapie-heinel.de` per Suchen&Ersetzen anpassen, falls andere Domain (Canonical, OG, JSON-LD, sitemap.xml, robots.txt).
 2. **E-Mail:** Alle Anfragen und Bewerbungen gehen an `info@physiotherapie-heinel.de` (Netlify-Benachrichtigung). Das Postfach muss unter der Domain existieren, sobald die Domain live ist.
-3. **Platzhalter:** Mitarbeiterzitate (karriere.html), Instagram-Feed (Elfsight) ersetzen.
-4. **Cookie-Banner:** Cookiebot einbinden; Google-Maps-iframe (index.html) hinter Consent legen.
+3. **Social Media:** Instagram-Feed (Elfsight) auf index.html einbinden und Instagram-/Facebook-Links im Footer ergänzen, sobald die Profile existieren.
+4. **Cookiebot** ist auf allen Seiten eingebunden (ID b1896dae-…, Auto-Blocking). Google Maps ist als „Marketing" markiert und lädt erst nach Einwilligung. In Cookiebot: Domain der Live-Seite eintragen, Scan starten, Banner-Texte auf Deutsch prüfen. Internen Hinweis-Kasten oben in datenschutz.html vor Livegang entfernen.
 5. **JobPosting-Schema:** `validThrough` (aktuell 2026-12-31) aktuell halten.
 6. **Offene Inhalte von Susan:** Foto Traktionsbehandlung, Video statt Treppenfoto (Eingang), ggf. Bus-/Tram-Linien in der Anfahrt.
