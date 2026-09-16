@@ -1,0 +1,8 @@
+# Netlify: .html-Adressen auf die sauberen URLs umleiten
+/danke.html      /danke      301
+/ueber-uns.html  /ueber-uns  301
+/karriere.html   /karriere   301
+/bewerbung.html  /bewerbung  301
+/impressum.html  /impressum  301
+/datenschutz.html /datenschutz 301
+/index.html      /           301
